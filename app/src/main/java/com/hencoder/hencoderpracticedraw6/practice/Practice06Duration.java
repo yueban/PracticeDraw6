@@ -64,7 +64,22 @@ public class Practice06Duration extends LinearLayout {
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO 在这里处理点击事件，执行动画。记得使用 `setDuration(duration)` 来设置动画的时长。
+                Object tag = v.getTag();
+                int tagInt = 0;
+                try {
+                    tagInt = (int) tag;
+                } catch (Exception ignored) {
+                }
+                switch (tagInt % 2) {
+                    case 0:
+                        imageView.animate().translationX(300).setDuration(duration);
+                        break;
+
+                    case 1:
+                        imageView.animate().translationXBy(-300).setDuration(duration);
+                        break;
+                }
+                v.setTag(++tagInt);
             }
         });
     }
